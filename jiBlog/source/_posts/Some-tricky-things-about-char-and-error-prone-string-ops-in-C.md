@@ -8,9 +8,11 @@ categories: C
 # detailed error-prone things in C (1st)
 ---
 
-As we all know, in C programming language, functions in *string.h* is very error-prone! In this post, I show something that might be in your way when you are manipulating string functions.
+As we all know, in C programming language, functions in *string.h* is very error-prone! In this post, I show something that might be in your way when you are using C.
 
 ---
+
+<!--more-->
 
 ## static keyword
 

@@ -19,6 +19,8 @@ There are three events cause CPU to trap
   * ecall
   * exception
   * device interrupt
+
+<!--more-->
   
 Trap stages (4 in total)
   * hardware actions (from CPU)

@@ -8,6 +8,8 @@ categories: C
 # How to setup gdb in macOS
 [referencelink-zhihu](https://zhuanlan.zhihu.com/p/68398728)
 
+<!--more-->
+
 ## Step1: install gdb
 ```sh
 brew install gdb

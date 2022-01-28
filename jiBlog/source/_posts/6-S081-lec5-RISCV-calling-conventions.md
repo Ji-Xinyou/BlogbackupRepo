@@ -24,6 +24,9 @@ Registers are categorized as **caller saved** and **callee saved**. The differen
 
 ---
 
+<!--more-->
+
+
 ## the Stack
 * The stack is created by function call! **Each function call creates a stack frame for itself to use.**
 * The stack starts from high address, growes down to low address. To make a new stack frame, decrement sp register.
