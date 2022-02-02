@@ -22,6 +22,9 @@ Registers are categorized as **caller saved** and **callee saved**. The differen
 * **Caller Saved** registers are **not** reserved across function calls.
 * **Callee Saved** registers are reserved across function calls. The caller has to find someway to save those registers.
 
+The convention also states, the **return value** is in a0 and a1, and **arguments** of the function is in a0-a7.
+* If more arguments are given, they should reside on stack.
+
 ---
 
 <!--more-->
