@@ -14,6 +14,8 @@ img{
 # Lec8: Page Faults
 ---
 
+<!--more-->
+
 **PAGE FAULTS ARE EXCEPTIONS, using THE SAME MECHANISM as syscall, i.e. TRAP**
 
 Using page fault, we can make mapping dynamic.
