@@ -11,11 +11,11 @@ img{
 }
 </style>
 
+<!--more-->
+
 # 6.S081 lec6: Traps
 
 From user space to kernel space
-
-<!--more-->
 
 * Hardware state
   * 32 general-purpose regs
@@ -47,13 +47,13 @@ supervisor mode can't do everything
 ## Shell calls to write()
 
 * high level path
-![](../images/6S081/shwrite.png)
+![shwrite](6-S081-lec6-Traps/shwrite.png)
 
 ### gdb debugging the code
 
 * In qemu-gdb, `^A + C` will get into qemu monitor
   * info mem will print the pgtbl
-![](../images/6S081/pgtblofsh.png)
+  ![pgtblofsh](6-S081-lec6-Traps/pgtblofsh.png)
 * text page, data page, guard page(no PTE_U bit), stack page, TRAPFRAME page and TRAMPOLINE page
 
 ---
@@ -71,6 +71,7 @@ After the kernel runs **ecall**, this is called by **write()**(in usys.S)
     * a0 now **points at TRAPFRAME**
     * sscratch saves a0
   
+
 Since ecall does not switch pgtbl, the first instructions of trap needs to present in every user's pagetable. (By the TRAMPOLINE page)
 * controlled by *stvec*
   * **before entering userspace, kernel** set it to 0x3ffffff000 (TRAMPOLINE)
@@ -177,7 +178,7 @@ w_sepc(p->trapframe->epc)
    1. but this has to be done in TRAMPOLINE, because only TRAMPOLINE are mapped both **in userspace and kernelspace**
     ```asm
     uint64 satp = MAKE_SATP(p->pagetable); // this is used as an argument
-
+   
     uint64 fn = TRAMPOLINE + (userret - trampoline);
     ((void(*)(uint64, uint64))fn)(TRAPFRAME, satp);
     ```

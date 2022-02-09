@@ -11,13 +11,16 @@ img{
 }
 </style>
 
+
+<!--more-->
+
 # 6.S081 lec5: RISCV calling conventions
 ---
 
 ## Caller Saved and Callee Saved
 Registers are categorized as **caller saved** and **callee saved**. The difference between them is very important.
 
-![](../images/6S081/regs.png)
+![regs](6-S081-lec5-RISCV-calling-conventions/regs.png)
 
 * **Caller Saved** registers are **not** reserved across function calls.
 * **Callee Saved** registers are reserved across function calls. The caller has to find someway to save those registers.
@@ -26,8 +29,6 @@ The convention also states, the **return value** is in a0 and a1, and **argument
 * If more arguments are given, they should reside on stack.
 
 ---
-
-<!--more-->
 
 
 ## the Stack
@@ -45,7 +46,7 @@ The convention also states, the **return value** is in a0 and a1, and **argument
         * This also shows that why $ra is a **callee saved** register.
   * The Prev. Frame address is always next to return address, to control frame callback.
 
-![](../images/6S081/stack.png)
+![stack](6-S081-lec5-RISCV-calling-conventions.assets/stack.png)
 
 ---
 
@@ -54,13 +55,13 @@ The convention also states, the **return value** is in a0 and a1, and **argument
 * **To open the gdb mode of xv6**
   * In one window type **make qemu-gdb** to start the gdb server
   * In another window type **riscv-unknown-elf-gdb** to connect to the previous gdb server and start debugging!
-<br/>
+  <br/>
 
 * **layout split/asm/reg/src**
   * -> show the layout of (asm & src)/asm/reg/ src
   * **focus reg/asm**....
     * -> change the focus among windows
-<br/>
+    <br/>
 
 * **info**
   * **info breakpoints**
@@ -70,16 +71,16 @@ The convention also states, the **return value** is in a0 and a1, and **argument
     * **backtrace (bt)**
       * frame x -> info frame
         * -> change current frame to **x** and print the info
-<br/>
+        <br/>
 
 * **tui enable**
   * show the tui
-<br/>
+  <br/>
 
 * **breakpoint/watchpoint \<tag\>**
   * **delete \<bp_nr\>**
   * info breakpoints/watchpoints
-<br/>
+  <br/>
 
 * **s & si** (step instruction)
 

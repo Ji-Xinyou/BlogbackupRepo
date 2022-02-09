@@ -11,10 +11,10 @@ img{
 }
 </style>
 
+<!--more-->
+
 # Lec8: Page Faults
 ---
-
-<!--more-->
 
 **PAGE FAULTS ARE EXCEPTIONS, using THE SAME MECHANISM as syscall, i.e. TRAP**
 
@@ -41,7 +41,7 @@ What we need for page fault
 
 `sbrk()` -> eager allocation: the mem is allocated asap
 * applications tend to overask
-![](../images/6S081/sbrk.jpeg)
+![sbrk](6-S081-lec8-Page-Faults/sbrk.jpeg)
 
 ### lazy allocation
 
@@ -94,7 +94,7 @@ The so called **an important thing** is stated in code section.
 
 ## zero-fill on demand
 
-![](../images/6S081/zerofill.jpeg)
+![zerofill](6-S081-lec8-Page-Faults/zerofill.jpeg)
 BSS is **zero-filled**, containing many pages with zero only. <- that's what we have in Virtual Address Space
 
 But in PA, we only have **one page** filled with zero. And we map all BSS pages to the zero-filled physical page.
@@ -116,9 +116,10 @@ When child want to modify some page, kalloc() a new page.
   * How to find the faulting page for **parent**
     * the same va, since the child is a **duplicate**
 
-![](../images/6S081/cowfork.jpeg)
+![cowfork](6-S081-lec8-Page-Faults/cowfork.jpeg)
 
 **pgfault**
+
 * copy page
 * map it
 * restart instruction
@@ -140,9 +141,10 @@ In *exec()*, we do not eagerly load the text, data segment **from disk to mem** 
 
 Instead, we set the PTE, but **without the PTE_V bit set, and do not actually load it**
 
-![](../images/6S081/demandpaging1.jpeg)
+![demandpaging1](6-S081-lec8-Page-Faults/demandpaging1.jpeg)
 
 **When page fault**
+
 * read the block of data from file(disk) to mem
 * map the memory into pgtbl
 * restart instuction

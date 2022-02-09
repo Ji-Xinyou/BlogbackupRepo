@@ -1,13 +1,19 @@
 ---
 title: 6.S081 cowlab
 date: 2022-02-02 18:09:08
-tags:
-categories:
+tags: 6.S081
+categories: O/S
 ---
 
-# 6.S081 Copy-On-Write fork() : COW lab
+<style>
+img{
+    width: 80%;
+}
+</style>
 
 <!--more-->
+
+# 6.S081 Copy-On-Write fork() : COW lab
 
 At this point, I think maybe the lab should be recorded as well.
 This record is not really for everyone originally. At least for now, I record this just because I think maybe I will reference here someday for recap.

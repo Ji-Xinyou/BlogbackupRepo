@@ -5,14 +5,16 @@ tags: 6.S081
 categories: O/S
 ---
 
-# xv6 book - Traps and syscall
----
-
 <style>
 img{
     width: 60%;
 }
 </style>
+
+<!--more-->
+
+ # xv6 book - Traps and syscall
+---
 
 ## Trap
 There are three events cause CPU to trap
@@ -20,8 +22,6 @@ There are three events cause CPU to trap
   * exception
   * device interrupt
 
-<!--more-->
-  
 Trap stages (4 in total)
   * hardware actions (from CPU)
   * assembly instructions, to prepare the way for kernel C code (**called vector**)
@@ -32,7 +32,7 @@ It is convenient to have separate code for different paths
   * from user space
   * from kernel space
   * timer interrupts
-  
+
 ---
 
 ## RISC-V trap machiery
@@ -41,7 +41,7 @@ It is convenient to have separate code for different paths
   * these regs cannot be written in user mode.
   * in machine modes, similar set of regs are used -> only for timer interrputs.
 
-![](../images/6S081/trapregs.png)
+![trapregs](xv6book-chap4-traps-and-syscall/trapregs.png)
 
 * Steps when trap happens **in hardware!!!**
   
@@ -69,6 +69,7 @@ Cases:
 Highlevel path:
 * uservec(trampoline.S:16) -> usertrap(trap.c:37) -> usertrapret(trap.c:90) -> userret(trampoline.S:88)
   
+
 **The trampoline page does the magic.**
 * The pc that stvec contains must have a mapping in all user pagetables!
   * Because the hardware does not change the pgtbl
@@ -83,7 +84,7 @@ Highlevel path:
 * *sscratch* does the magic!
    ```asm
     csrrw a0, sscratch, a0 # swap the content
-    ```
+   ```
   now uservec has **a0** to play with!
 
 #### store the regs!
@@ -105,6 +106,7 @@ job: determine the cause of the trap(ecall?interrupt?exception?) -> process it -
 1. we now in kernel space, set *stvec* to *kernelvec*. So the trap in kernel will be handled in kernelvec, rather than in uservec
 2. save the sepc (previously saved user's pc). This is because *usertrap()* might call *yield()*(caused by timer interrupt) to switch to another process's kernel thread, in whichi the sepc might be modified.
    
+
 Three cases of trap:
 * systemcall(ecall)
   * call syscall to handle it

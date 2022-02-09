@@ -1,18 +1,18 @@
 ---
 title: Some detailed things in C (1)
 date: 2022-01-28 20:03:38
-tags: detail
-categories: C 
+tags: C
+categories: ProgLang
 ---
+
+---
+
+<!--more-->
 
 # detailed error-prone things in C (1st)
 ---
 
 As we all know, in C programming language, functions in *string.h* is very error-prone! In this post, I show something that might be in your way when you are using C.
-
----
-
-<!--more-->
 
 ## static keyword
 
