@@ -13,6 +13,8 @@ img{
 
 <!--more-->
 
+
+
 # Ownership
 
 **所有权规则**:
@@ -360,3 +362,132 @@ fn main() {
     assert_eq!(slice, &[2, 3]);
 }
 ```
+
+---
+
+### String = String + &str + &str + ...
+
+```rust
+fn add(self, s: &str) -> String {}
+```
+
+是String的加法，他接受的变量是一个切片`slice`，因此我们在拼接hello world的时候应该这样操作
+
+```rust
+let s1 = String::from("Hello, ");
+let s2 = String::from("world!");
+
+let s3 = s1 + &s2;
+assert_eq!(s3, "Hello, world!");
+```
+
+
+
+#### String 和 & str的转换
+
+* &str -> String
+
+  * `String::from(&str)`
+  * `&str.to_string()`
+
+* String -> &str
+
+  ```rust
+  let s = String::from("Hello, world!");
+  
+  &s
+  &s[..]
+  s.as_str()
+  ```
+
+  也就是说，我们取引用即可，这是由于`deref`隐式强制转换trait导致的
+
+---
+
+### index String
+
+**索引或者slice一个字符串很危险**，因为在rust里面String类型是`UTF-8`，每个字符是1-4个字节，我们不能保证切片落在字符边界处。
+
+* 这是因为String在底层是u8来表示的，每一个都是一个字节，我们在索引的时候其实是取了第一个字节，而这对于不是一个字节长的字符毫无意义
+
+#### manipulate UTF-8 Strings
+
+* In char
+
+  ```rust
+  for c in "中国人".chars() {
+      println!("{}", c);
+  }
+  ```
+
+* In byte
+
+  ```rust
+  for b in "中国人".bytes() {
+      println!("{}", b);
+  }
+  ```
+
+* 用库 - `utf8_slice`
+
+---
+
+## Wrap up
+
+```rust
+fn main() {
+  // 编译器自动推导出one的类型
+  let one             = [1, 2, 3];
+  // 显式类型标注
+  let two: [u8; 3]    = [1, 2, 3];
+  let blank1          = [0; 3];
+  let blank2: [u8; 3] = [0; 3];
+    
+  // arrays是一个二维数组，其中每一个元素都是一个数组，元素类型是[u8; 3]
+  let arrays: [[u8; 3]; 4]  = [one, two, blank1, blank2];
+  
+  // 借用arrays的元素用作循环中
+  for a in &arrays {
+    print!("{:?}: ", a);
+    // 将a变成一个迭代器，用于循环
+    // 你也可以直接用for n in a {}来进行循环
+    for n in a.iter() {
+      print!("\t{} + 10 = {}", n, n+10);
+    }
+ 
+    let mut sum = 0;
+    // 0..a.len,是一个 Rust 的语法糖，其实就等于一个数组，元素是从0,1,2一直增加到到a.len-1
+    for i in 0..a.len() {
+      sum += a[i];
+    }
+    println!("\t({:?} = {})", a, sum);
+  }
+}
+```
+
+---
+
+### appendix1: for loop
+
+```rust
+for item in &container {
+  // ...
+}
+```
+
+与(上面无法修改item)
+
+```rust
+for item in &mut container {
+  // ...
+}
+```
+
+与 (下面会将所有权挪到for内)
+
+```rust
+for item in container {
+  // ...
+}
+```
+
