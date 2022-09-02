@@ -1,0 +1,17 @@
+[
+    {
+       "name":"FL-NonIID emulation for benchmark and optimizing algorithms",
+       "url":"https://github.com/Ji-Xinyou/FL-NonIID-algorithms-and-benchmark",
+       "desc":"Giving a method to emulate Non-IID schemes, and benchmark SOTA FL algorithms on different Non-IID schemes. Also propose an easy way for FedBN to overcome unavailability under label skew."
+    },
+    {
+       "name":"Wasserstein GAN for image colorization",
+       "url":"https://github.com/Ji-Xinyou/wgan-for-image-colorization",
+       "desc":"Using Wasserstein GAN for easier training on Image Colorization, relatively good performance"
+    },
+    {
+        "name":"Ji-OS",
+        "url":"https://github.com/Ji-Xinyou/J-i-OS",
+        "desc":"An unfinished toy operating system for interests"
+    }
+]
